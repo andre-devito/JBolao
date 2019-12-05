@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     15/06/2018 18:54:58                                                        
+
+     project: JBolao
+     description: JBolao
+                   
+     andre.devito                                                                
+     ====================================================================== -->
+<project name="project" default="compilar">
+    <description>
+            description
+    </description>
+	
+	<property file="build.properties" />
+	
+	<path id="classpath-compilacao">
+		<fileset dir="lib">
+			<include name="*.jar" />
+		</fileset>	
+	</path>
+
+	
+	
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: compilar                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="compilar" depends="init">
+    	<echo>Executando target compilar</echo>
+    	<javac executable="${javac1.11}" fork="yes" includeantruntime="false" destdir="${classes.dir}" srcdir="src" encoding="iso-8859-1">
+    		<classpath refid="classpath-compilacao" />
+    	</javac>
+    </target>
+	
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: limpar                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="limpar">
+    	<echo>Executando target limpar</echo>
+    	<delete dir="${classes.dir}" />
+    </target>
+	
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="init" depends="limpar">
+    	<echo>Executando target init</echo>
+    	<mkdir dir="${classes.dir}" />
+    </target>
+
+</project>
